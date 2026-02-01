@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Despesa extends Saldo{
@@ -8,8 +9,8 @@ public class Despesa extends Saldo{
         this.qtdParcesalas = qtdParcesalas;
     }
 
-    public Despesa(int id, Categoria categoria, String valor, LocalDate data, String valorPrevisto, int qtdParcesalas) {
-        super(id, categoria, valor, data, valorPrevisto);
+    public Despesa(int id, Categoria categoria, BigDecimal valorTotal, BigDecimal valorPrevisto, LocalDate data, int qtdParcesalas) {
+        super(id, categoria, valorTotal, valorPrevisto, data);
         this.qtdParcesalas = qtdParcesalas;
     }
 

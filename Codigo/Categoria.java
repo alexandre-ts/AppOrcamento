@@ -1,4 +1,6 @@
-public class Categoria {
+import java.io.*;
+
+public class Categoria implements Serializable {
     private String categoria;
     private String descricao;
 

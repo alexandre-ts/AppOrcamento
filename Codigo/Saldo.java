@@ -1,24 +1,25 @@
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 
 
-public abstract class Saldo {
+public abstract class Saldo implements Serializable{
     private int id;
     private boolean fixoMes;
     private Categoria categoria;
-    private BigDecimal valor;
+    private BigDecimal valorTotal;
     private LocalDate data;
     private BigDecimal valorPrevisto;
 
     public Saldo() {}
 
-    public Saldo(int id, Categoria categoria, String valor, LocalDate data, String valorPrevisto) {
+    public Saldo(int id, Categoria categoria, BigDecimal valorTotal, BigDecimal valorPrevisto, LocalDate data) {
         this.id = id;
         this.categoria = categoria;
-        this.valor = new BigDecimal(valor).setScale(4, RoundingMode.HALF_EVEN);
+        this.valorTotal = valorTotal;
         this.data = data;
-        this.valorPrevisto = new BigDecimal(valor).setScale(4, RoundingMode.HALF_EVEN);
+        this.valorPrevisto = valorPrevisto;
     }
 
 
@@ -54,20 +55,20 @@ public abstract class Saldo {
 
 
     public BigDecimal getValor() {
-        return valor;
+        return valorTotal;
     }
 
-    public void setValor(BigDecimal valor) {
+    public void setValor(BigDecimal valorTotal) {
 
-        if (valor == null) {
-            throw new IllegalArgumentException("O valor não pode ser nulo.");
+        if (valorTotal == null) {
+            throw new IllegalArgumentException("O valorTotal não pode ser nulo.");
         }
 
-        if (valor.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("O valor não pode ser negativo.");
+        if (valorTotal.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("O valorTotal não pode ser negativo.");
         }
 
-        this.valor = valor;
+        this.valorTotal = valorTotal;
     }
 
 
@@ -91,14 +92,18 @@ public abstract class Saldo {
     public void setValorPrevisto(BigDecimal valorPrevisto) {
         
         if (valorPrevisto == null) {
-            throw new IllegalArgumentException("O valor previsto não pode ser nulo.");
+            throw new IllegalArgumentException("O valorTotal previsto não pode ser nulo.");
         }
 
         if (valorPrevisto.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("O valor previsto não pode ser negativo.");
+            throw new IllegalArgumentException("O valorTotal previsto não pode ser negativo.");
         }
 
         this.valorPrevisto = valorPrevisto;
     }
 
+
+    public void print(){
+        System.out.println(id+";"+categoria+";"+valorTotal+";"+valorPrevisto+";"+data);
+    }
 }

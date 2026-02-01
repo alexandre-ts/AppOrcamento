@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.*;
 
-public class Orcamento {
+public class Orcamento implements Serializable {
 
     private List<Saldo> listSaldos = new ArrayList<>();
 
@@ -33,6 +34,11 @@ public class Orcamento {
     public void editarElemento(int index, Saldo novoSaldo){
         listSaldos.set(index, novoSaldo);                
     }
+
+    public void mostrar(){
+        listSaldos.forEach(s -> s.print());
+    }
+
 
 }
 
