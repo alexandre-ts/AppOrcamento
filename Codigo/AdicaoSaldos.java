@@ -3,12 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
-import java.math.BigDecimal;
-import java.text.NumberFormat;
-import java.text.ParseException;
-import java.util.Locale;
-
-import javax.swing.JOptionPane;
 import javax.swing.text.AbstractDocument;
 
 /**
@@ -199,42 +193,14 @@ public class AdicaoSaldos extends javax.swing.JFrame {
 
     private void bntAdicionarActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
-
-
-        Number valorPrevisto = null;
-
-        try {
-
-            NumberFormat nf = NumberFormat.getInstance(new Locale("pt", "BR"));
-            valorPrevisto =  nf.parse(txtValor.getText());
-
-        } catch (ParseException e) {
-            JOptionPane.showMessageDialog(null,
-                    "Valor inválido. Digite um número válido.",
-                    "Erro",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-
-        Number valor = null;
-
-        try {
-            NumberFormat nf = NumberFormat.getInstance(new Locale("pt", "BR"));
-            valor =  nf.parse(txtValor.getText());
-
-        } catch (ParseException e) {
-            JOptionPane.showMessageDialog(null,
-                    "Valor inválido. Digite um número válido.",
-                    "Erro",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-
-        
+        String valorPrevisto = txtValorPrevisto.getText();
+        String valor = txtValor.getText();
         String categoria = cmdCategoria.getSelectedItem().toString();
         String descricao = txtDescricao.getText();
         String qtdParcesalas = jSpinner1.getValue().toString();
         String data = "fdfad";
 
-        controlerOrcamento.addDespesa("1", categoria, descricao, valor.toString(), valorPrevisto.toString(), data, qtdParcesalas);
+        controlerOrcamento.addDespesa("1", categoria, descricao, valor, valorPrevisto, data, qtdParcesalas);
         
         controlerOrcamento.mostra();
 
